@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { works } from "@/mocks/works";
+import { resolvePublicUrl } from "@/utils/resolvePublicUrl";
 
 const categories = ["すべて", "ホームページ制作", "LP制作", "業務効率化システム"];
 
@@ -133,7 +134,7 @@ export default function Works() {
               </div>
               {selected.url && (
                 <a
-                  href={selected.url}
+                  href={resolvePublicUrl(selected.url)}
                   target="_blank"
                   rel="nofollow noopener noreferrer"
                   className="mt-5 flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-amber-500 text-white text-sm font-semibold hover:bg-amber-600 transition-colors cursor-pointer whitespace-nowrap"

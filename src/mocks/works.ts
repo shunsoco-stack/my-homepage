@@ -7,6 +7,7 @@ export const works = [
     description: "全国15店舗を展開する飲食チェーンの公式サイトをフルリニューアル。予約システムとの連携も実装。",
     tags: ["React", "Next.js", "SEO"],
     image: "https://readdy.ai/api/search-image?query=modern%20restaurant%20website%20design%20on%20laptop%20screen%2C%20clean%20minimal%20UI%2C%20food%20photography%2C%20professional%20web%20design%20mockup%2C%20white%20background%2C%20high%20quality&width=800&height=500&seq=work1&orientation=landscape",
+    url: "https://shunsoco-stack.github.io/my-homepage/",
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const works = [
     description: "物件情報の登録・管理・公開を一元化するシステム。スタッフの作業時間を70%削減。",
     tags: ["Python", "PostgreSQL", "API"],
     image: "https://readdy.ai/api/search-image?query=real%20estate%20property%20management%20dashboard%20UI%2C%20clean%20data%20visualization%2C%20modern%20admin%20panel%2C%20professional%20software%20interface%2C%20light%20background&width=800&height=500&seq=work2&orientation=landscape",
+    url: "",
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ export const works = [
     description: "コンバージョン率を重視したランディングページ。A/Bテストにより予約率を2.3倍に改善。",
     tags: ["HTML/CSS", "JavaScript", "GA4"],
     image: "https://readdy.ai/api/search-image?query=beauty%20salon%20landing%20page%20design%2C%20elegant%20feminine%20aesthetic%2C%20soft%20pink%20and%20white%20tones%2C%20modern%20web%20design%20mockup%20on%20screen%2C%20professional&width=800&height=500&seq=work3&orientation=landscape",
+    url: "",
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ export const works = [
     description: "複数ECモールの在庫を一括管理するツール。手動作業をほぼゼロに自動化。",
     tags: ["Node.js", "React", "API連携"],
     image: "https://readdy.ai/api/search-image?query=inventory%20management%20system%20dashboard%2C%20e-commerce%20analytics%2C%20clean%20modern%20UI%20with%20charts%20and%20tables%2C%20professional%20software%2C%20light%20minimal%20design&width=800&height=500&seq=work4&orientation=landscape",
+    url: "",
   },
   {
     id: 5,
@@ -43,6 +47,7 @@ export const works = [
     description: "税理士事務所の信頼感を高めるコーポレートサイト。問い合わせ数が月平均3倍に増加。",
     tags: ["React", "TailwindCSS", "SEO"],
     image: "https://readdy.ai/api/search-image?query=professional%20law%20firm%20corporate%20website%20design%2C%20trustworthy%20clean%20minimal%20layout%2C%20dark%20navy%20and%20white%20color%20scheme%2C%20desktop%20mockup%2C%20high%20quality&width=800&height=500&seq=work5&orientation=landscape",
+    url: "",
   },
   {
     id: 6,
@@ -52,5 +57,6 @@ export const works = [
     description: "SaaSプロダクトのサービス紹介LP。ユーザー登録率を目標の150%達成。",
     tags: ["React", "Framer Motion", "CRO"],
     image: "https://readdy.ai/api/search-image?query=SaaS%20startup%20landing%20page%20design%2C%20modern%20tech%20product%20website%2C%20gradient%20background%2C%20clean%20UI%20components%2C%20professional%20web%20design%20mockup&width=800&height=500&seq=work6&orientation=landscape",
+    url: "",
   },
 ];

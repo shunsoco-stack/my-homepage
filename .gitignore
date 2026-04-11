@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output (Vite uses `out` in this project)
+out/
+dist/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Logs & debug
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editor & OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+
+# TypeScript / tooling
+*.tsbuildinfo
+auto-imports.d.ts

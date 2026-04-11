@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { works } from "@/mocks/works";
 
 const categories = ["すべて", "ホームページ制作", "LP制作", "業務効率化システム"];
 
-export default function Works() {
+export default function WorksGrid() {
   const [active, setActive] = useState("すべて");
   const [selected, setSelected] = useState<null | (typeof works)[0]>(null);
 
@@ -12,33 +11,15 @@ export default function Works() {
     active === "すべて" ? works : works.filter((w) => w.category === active);
 
   return (
-    <section id="works" className="py-24 bg-gray-950">
+    <section className="bg-gray-950 py-16 min-h-screen">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
-          <div>
-            <div className="inline-flex items-center gap-2 text-amber-400 text-sm font-semibold mb-3">
-              <i className="ri-briefcase-line"></i>
-              <span>Portfolio</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-black text-white">制作実績</h2>
-          </div>
-          <Link
-            to="/works"
-            className="inline-flex items-center gap-1.5 text-sm text-amber-400 font-semibold hover:text-amber-300 transition-colors cursor-pointer whitespace-nowrap"
-          >
-            すべて見る
-            <i className="ri-arrow-right-line"></i>
-          </Link>
-        </div>
-
         {/* Filter tabs */}
         <div className="flex flex-wrap gap-2 mb-10">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
+              className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer whitespace-nowrap ${
                 active === cat
                   ? "bg-amber-500 text-white"
                   : "border border-white/20 text-white/60 hover:border-white/40 hover:text-white/80"
@@ -57,7 +38,7 @@ export default function Works() {
               onClick={() => setSelected(work)}
               className="group rounded-2xl overflow-hidden bg-gray-900 cursor-pointer hover:ring-2 hover:ring-amber-500/50 transition-all"
             >
-              <div className="w-full h-48 overflow-hidden">
+              <div className="w-full h-52 overflow-hidden">
                 <img
                   src={work.image}
                   alt={work.title}
@@ -69,7 +50,8 @@ export default function Works() {
                   <span className="text-xs text-amber-400 font-semibold">{work.category}</span>
                   <span className="text-xs text-white/30">{work.year}</span>
                 </div>
-                <h3 className="text-white font-bold text-sm leading-snug mb-3">{work.title}</h3>
+                <h2 className="text-white font-bold text-sm leading-snug mb-3">{work.title}</h2>
+                <p className="text-white/40 text-xs leading-relaxed mb-4 line-clamp-2">{work.description}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {work.tags.map((tag) => (
                     <span
@@ -83,17 +65,6 @@ export default function Works() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Bottom link */}
-        <div className="mt-10 text-center">
-          <Link
-            to="/works"
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-amber-500/40 text-amber-400 text-sm font-semibold hover:bg-amber-500/10 transition-colors cursor-pointer whitespace-nowrap"
-          >
-            <i className="ri-briefcase-line"></i>
-            制作実績をすべて見る
-          </Link>
         </div>
       </div>
 
@@ -121,7 +92,7 @@ export default function Works() {
               </div>
               <h3 className="text-gray-900 font-bold text-lg mb-3">{selected.title}</h3>
               <p className="text-gray-500 text-sm leading-relaxed mb-4">{selected.description}</p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mb-2">
                 {selected.tags.map((tag) => (
                   <span
                     key={tag}
@@ -136,7 +107,7 @@ export default function Works() {
                   href={selected.url}
                   target="_blank"
                   rel="nofollow noopener noreferrer"
-                  className="mt-5 flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-amber-500 text-white text-sm font-semibold hover:bg-amber-600 transition-colors cursor-pointer whitespace-nowrap"
+                  className="mt-4 flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-amber-500 text-white text-sm font-semibold hover:bg-amber-600 transition-colors cursor-pointer whitespace-nowrap"
                 >
                   <i className="ri-external-link-line"></i>
                   サイトを見る

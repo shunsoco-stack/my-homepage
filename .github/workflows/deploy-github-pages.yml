@@ -30,6 +30,8 @@ jobs:
         env:
           BASE_PATH: /my-homepage/
         run: npm run build
+      - name: SPA fallback for GitHub Pages
+        run: cp out/index.html out/404.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

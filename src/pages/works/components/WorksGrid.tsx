@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { works } from "@/mocks/works";
 
 const categories = ["すべて", "ホームページ制作", "LP制作", "業務効率化システム"];
@@ -6,6 +7,7 @@ const categories = ["すべて", "ホームページ制作", "LP制作", "業務
 export default function WorksGrid() {
   const [active, setActive] = useState("すべて");
   const [selected, setSelected] = useState<null | (typeof works)[0]>(null);
+  const navigate = useNavigate();
 
   const filtered =
     active === "すべて" ? works : works.filter((w) => w.category === active);
@@ -103,15 +105,20 @@ export default function WorksGrid() {
                 ))}
               </div>
               {selected.url && (
-                <a
-                  href={selected.url}
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
+                <button
+                  onClick={() => {
+                    setSelected(null);
+                    if (selected.url.startsWith("http")) {
+                      window.open(selected.url, "_blank", "noopener,noreferrer");
+                    } else {
+                      navigate(selected.url);
+                    }
+                  }}
                   className="mt-4 flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-amber-500 text-white text-sm font-semibold hover:bg-amber-600 transition-colors cursor-pointer whitespace-nowrap"
                 >
                   <i className="ri-external-link-line"></i>
                   サイトを見る
-                </a>
+                </button>
               )}
               <button
                 onClick={() => setSelected(null)}

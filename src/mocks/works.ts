@@ -7,7 +7,7 @@ export const works = [
     description: "全国15店舗を展開する飲食チェーンの公式サイトをフルリニューアル。予約システムとの連携も実装。",
     tags: ["React", "Next.js", "SEO"],
     image: "https://readdy.ai/api/search-image?query=modern%20restaurant%20website%20design%20on%20laptop%20screen%2C%20clean%20minimal%20UI%2C%20food%20photography%2C%20professional%20web%20design%20mockup%2C%20white%20background%2C%20high%20quality&width=800&height=500&seq=work1&orientation=landscape",
-    url: "https://shunsoco-stack.github.io/my-homepage/",
+    url: "",
   },
   {
     id: 2,

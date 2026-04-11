@@ -112,9 +112,20 @@ export default function Works() {
                   </span>
                 ))}
               </div>
+              {selected.url && (
+                <a
+                  href={selected.url}
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className="mt-5 flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-amber-500 text-white text-sm font-semibold hover:bg-amber-600 transition-colors cursor-pointer whitespace-nowrap"
+                >
+                  <i className="ri-external-link-line"></i>
+                  サイトを見る
+                </a>
+              )}
               <button
                 onClick={() => setSelected(null)}
-                className="mt-5 w-full py-2.5 rounded-full border border-gray-200 text-gray-500 text-sm font-medium hover:bg-gray-50 transition-colors cursor-pointer whitespace-nowrap"
+                className="mt-3 w-full py-2.5 rounded-full border border-gray-200 text-gray-500 text-sm font-medium hover:bg-gray-50 transition-colors cursor-pointer whitespace-nowrap"
               >
                 閉じる
               </button>

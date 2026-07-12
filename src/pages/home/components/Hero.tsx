@@ -127,7 +127,7 @@ export default function Hero() {
           {[
             { num: "50+", label: "プロジェクト完了" },
             { num: "98%", label: "クライアント満足度" },
-            { num: "5年+", label: "フリーランス経験" },
+            { num: "5年+", label: "エンジニア経験" },
           ].map((stat) => (
             <div
               key={stat.label}

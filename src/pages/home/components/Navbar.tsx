@@ -57,7 +57,7 @@ export default function Navbar() {
             onClick={() => handleNav("#contact")}
             className="ml-2 px-5 py-2 rounded-full bg-amber-500 text-white text-sm font-semibold hover:bg-amber-600 transition-colors cursor-pointer whitespace-nowrap"
           >
-            相談する
+            無料相談する
           </button>
         </nav>
 
@@ -89,7 +89,7 @@ export default function Navbar() {
             onClick={() => handleNav("#contact")}
             className="mt-2 px-5 py-2 rounded-full bg-amber-500 text-white text-sm font-semibold cursor-pointer whitespace-nowrap"
           >
-            相談する
+            無料相談する
           </button>
         </div>
       )}

@@ -74,7 +74,7 @@ export default function Footer() {
 
         <div className="mt-10 pt-6 border-t border-amber-100 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-400">&copy; 2024 Freelance. All rights reserved.</p>
-          <p className="text-xs text-gray-400">東京都 / フリーランス Webエンジニア・デザイナー</p>
+          <p className="text-xs text-gray-400">神奈川県 / フリーランス Webエンジニア・デザイナー</p>
         </div>
       </div>
     </footer>

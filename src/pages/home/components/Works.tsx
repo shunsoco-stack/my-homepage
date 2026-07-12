@@ -23,6 +23,9 @@ export default function Works() {
               <span>Portfolio</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-black text-white">制作実績</h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/60">
+              実案件は守秘義務のため非公開です。以下は制作品質をご覧いただくためのデモサイトです。
+            </p>
           </div>
           <Link
             to="/works"
@@ -60,7 +63,7 @@ export default function Works() {
             >
               <div className="w-full h-48 overflow-hidden">
                 <img
-                  src={work.image}
+                  src={resolvePublicUrl(work.image)}
                   alt={work.title}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
@@ -68,6 +71,9 @@ export default function Works() {
               <div className="p-5">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-xs text-amber-400 font-semibold">{work.category}</span>
+                  {work.demo && (
+                    <span className="rounded-full bg-amber-400/15 px-2 py-0.5 text-xs font-semibold text-amber-300">デモサイト</span>
+                  )}
                   <span className="text-xs text-white/30">{work.year}</span>
                 </div>
                 <h3 className="text-white font-bold text-sm leading-snug mb-3">{work.title}</h3>
@@ -118,6 +124,9 @@ export default function Works() {
             <div className="p-6">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xs text-amber-500 font-semibold">{selected.category}</span>
+                {selected.demo && (
+                  <span className="rounded-full bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-600">デモサイト</span>
+                )}
                 <span className="text-xs text-gray-400">{selected.year}</span>
               </div>
               <h3 className="text-gray-900 font-bold text-lg mb-3">{selected.title}</h3>

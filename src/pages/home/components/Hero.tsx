@@ -1,147 +1,124 @@
-import { useState, useEffect } from "react";
+import { works } from "@/mocks/works";
+import { resolvePublicUrl } from "@/utils/resolvePublicUrl";
 
-const bgImages = [
-  "https://public.readdy.ai/ai/img_res/edited_ac6da986a269f077ad37e25eb61805bb_301fea8d.jpg",
-  "https://readdy.ai/api/search-image?query=freelance%20web%20developer%20working%20at%20modern%20desk%20with%20multiple%20monitors%20showing%20code%20and%20design%2C%20clean%20minimal%20workspace%2C%20soft%20warm%20lighting%2C%20professional%20home%20office%20setup%2C%20cinematic%20wide%20shot&width=1600&height=900&seq=hero-bg2&orientation=landscape",
-  "https://readdy.ai/api/search-image?query=modern%20digital%20agency%20creative%20workspace%2C%20team%20collaboration%20on%20web%20design%20project%2C%20large%20screens%20with%20beautiful%20UI%20mockups%2C%20contemporary%20office%20interior%2C%20warm%20ambient%20lighting%2C%20wide%20angle%20photography&width=1600&height=900&seq=hero-bg3&orientation=landscape",
-];
+const collageWorks = works.slice(0, 3);
 
 export default function Hero() {
-  const [current, setCurrent] = useState(0);
-  const [next, setNext] = useState(1);
-  const [transitioning, setTransitioning] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTransitioning(true);
-      setTimeout(() => {
-        setCurrent((prev) => (prev + 1) % bgImages.length);
-        setNext((prev) => (prev + 1) % bgImages.length);
-        setTransitioning(false);
-      }, 1500);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
-
   const handleNav = (href: string) => {
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-
-      {/* Ken Burns background layers */}
+    <section className="relative flex min-h-screen items-center overflow-hidden bg-gray-950">
       <style>{`
-        @keyframes kenburns-1 {
-          0%   { transform: scale(1.08) translate(0%, 0%); }
-          100% { transform: scale(1.18) translate(-2%, -1.5%); }
+        @keyframes work-collage-float-a {
+          0%, 100% { transform: translateY(-16px); }
+          50% { transform: translateY(18px); }
         }
-        @keyframes kenburns-2 {
-          0%   { transform: scale(1.1) translate(1.5%, 1%); }
-          100% { transform: scale(1.2) translate(-1%, -2%); }
+        @keyframes work-collage-float-b {
+          0%, 100% { transform: translateY(14px); }
+          50% { transform: translateY(-18px); }
         }
-        @keyframes kenburns-3 {
-          0%   { transform: scale(1.12) translate(-1%, 1.5%); }
-          100% { transform: scale(1.22) translate(2%, -1%); }
+        @keyframes work-collage-float-c {
+          0%, 100% { transform: translateY(-8px); }
+          50% { transform: translateY(12px); }
         }
-        .kb-1 { animation: kenburns-1 8s ease-in-out forwards; }
-        .kb-2 { animation: kenburns-2 8s ease-in-out forwards; }
-        .kb-3 { animation: kenburns-3 8s ease-in-out forwards; }
+        .work-collage-float-a { animation: work-collage-float-a 12s ease-in-out infinite; }
+        .work-collage-float-b { animation: work-collage-float-b 15s ease-in-out infinite; }
+        .work-collage-float-c { animation: work-collage-float-c 13s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) {
+          .work-collage-float-a, .work-collage-float-b, .work-collage-float-c { animation: none; }
+        }
       `}</style>
 
-      {bgImages.map((src, i) => (
-        <div
-          key={src}
-          className="absolute inset-0 transition-opacity duration-1500"
-          style={{
-            opacity: i === current ? (transitioning ? 0 : 1) : i === next && transitioning ? 1 : 0,
-            transitionDuration: "1500ms",
-            zIndex: i === next && transitioning ? 1 : 0,
-          }}
-        >
-          <div
-            className={`absolute inset-0 bg-cover bg-center ${i === 0 ? "kb-1" : i === 1 ? "kb-2" : "kb-3"}`}
-            style={{ backgroundImage: `url('${src}')` }}
-          />
-        </div>
-      ))}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_35%,rgba(245,158,11,0.22),transparent_35%),radial-gradient(circle_at_15%_85%,rgba(120,53,15,0.42),transparent_35%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(3,7,18,0.98)_0%,rgba(3,7,18,0.9)_43%,rgba(3,7,18,0.42)_100%)]" />
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/55 to-black/40 z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block">
+        {collageWorks.map((work, index) => {
+          const positions = [
+            "right-[7%] top-[13%] -rotate-6",
+            "right-[30%] top-[36%] rotate-3",
+            "right-[-2%] top-[57%] -rotate-3",
+          ];
+          const animations = ["work-collage-float-a", "work-collage-float-b", "work-collage-float-c"];
 
-      {/* Slide indicators */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-        {bgImages.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => { setCurrent(i); setNext((i + 1) % bgImages.length); }}
-            className={`transition-all duration-500 rounded-full cursor-pointer ${i === current ? "w-6 h-1.5 bg-amber-400" : "w-1.5 h-1.5 bg-white/40 hover:bg-white/60"}`}
-            aria-label={`スライド ${i + 1}`}
-          />
-        ))}
+          return (
+            <figure key={work.id} className={`absolute w-[25rem] xl:w-[29rem] ${positions[index]}`}>
+              <div className={`overflow-hidden rounded-2xl border border-white/20 bg-slate-950 shadow-2xl shadow-black/50 ${animations[index]}`}>
+                <div className="flex h-8 items-center gap-1.5 border-b border-white/10 bg-white/10 px-3">
+                  <span className="h-2 w-2 rounded-full bg-red-400/80" />
+                  <span className="h-2 w-2 rounded-full bg-amber-300/80" />
+                  <span className="h-2 w-2 rounded-full bg-emerald-400/80" />
+                  <span className="ml-3 h-4 flex-1 rounded-full bg-black/25" />
+                </div>
+                <img
+                  src={resolvePublicUrl(work.image)}
+                  alt={work.title}
+                  width={800}
+                  height={450}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
+                  className="aspect-[16/9] w-full object-cover object-top"
+                />
+              </div>
+            </figure>
+          );
+        })}
       </div>
 
-      <div className="relative z-20 w-full max-w-6xl mx-auto px-6 md:px-10 pt-24 pb-20">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-10 pt-24 pb-20">
         <div className="max-w-3xl">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm mb-8">
-            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-            <span className="text-white/90 text-sm font-medium">現在、新規案件受付中</span>
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 backdrop-blur-sm">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+            <span className="text-sm font-medium text-white/90">現在、新規案件受付中</span>
           </div>
 
-          {/* Heading */}
-          <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6 tracking-tight">
+          <h1 className="mb-6 text-4xl font-black leading-tight tracking-tight text-white md:text-6xl">
             Web制作・システム開発で
             <br />
             <span className="text-amber-400">ビジネスを加速</span>させる
           </h1>
 
-          {/* Sub */}
-          <p className="text-white/75 text-base md:text-lg leading-relaxed mb-10 max-w-xl">
+          <p className="mb-10 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
             ホームページ・LP制作から業務効率化システムまで、
             <br className="hidden md:block" />
             あなたのビジネス課題を技術で解決します。
           </p>
 
-          {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col gap-4 sm:flex-row">
             <button
               onClick={() => handleNav("#contact")}
-              className="px-8 py-3.5 rounded-full bg-amber-500 text-white font-bold text-sm hover:bg-amber-600 transition-colors cursor-pointer whitespace-nowrap"
+              className="cursor-pointer whitespace-nowrap rounded-full bg-amber-500 px-8 py-3.5 text-sm font-bold text-white transition-colors hover:bg-amber-600"
             >
               無料相談する
               <i className="ri-arrow-right-line ml-2"></i>
             </button>
             <button
               onClick={() => handleNav("#works")}
-              className="px-8 py-3.5 rounded-full border border-white/40 text-white font-semibold text-sm hover:bg-white/10 transition-colors cursor-pointer whitespace-nowrap"
+              className="cursor-pointer whitespace-nowrap rounded-full border border-white/40 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
             >
               実績を見る
             </button>
           </div>
         </div>
 
-        {/* Stats */}
         <div className="mt-16 flex flex-wrap gap-6">
           {[
             { num: "50+", label: "プロジェクト完了" },
             { num: "98%", label: "クライアント満足度" },
             { num: "5年+", label: "エンジニア経験" },
           ].map((stat) => (
-            <div
-              key={stat.label}
-              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-6 py-4"
-            >
+            <div key={stat.label} className="rounded-2xl border border-white/20 bg-white/10 px-6 py-4 backdrop-blur-sm">
               <div className="text-2xl font-black text-white">{stat.num}</div>
-              <div className="text-white/60 text-xs mt-0.5">{stat.label}</div>
+              <div className="mt-0.5 text-xs text-white/60">{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/40 z-20">
+      <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-white/40">
         <span className="text-xs tracking-widest">SCROLL</span>
         <i className="ri-arrow-down-line animate-bounce"></i>
       </div>

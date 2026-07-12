@@ -15,7 +15,7 @@ export default function RealEstatePage() {
       <RealEstatePricing />
       <RealEstateContact />
       <footer className="bg-slate-950 py-8 text-center">
-        <p className="text-xs text-white/20">&copy; 2024 PropBase. All rights reserved. &nbsp;|&nbsp; <span className="text-amber-500/60">Developed by Freelance.</span></p>
+        <p className="text-xs text-white/20">&copy; 2024 PropBase. All rights reserved. &nbsp;|&nbsp; <span className="text-amber-500/60">Developed by Freelance.</span> &nbsp;|&nbsp; ※本サイトはポートフォリオ用のデモです</p>
       </footer>
     </div>
   );

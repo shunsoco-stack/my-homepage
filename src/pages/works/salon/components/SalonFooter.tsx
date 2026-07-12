@@ -75,6 +75,7 @@ export default function SalonFooter() {
           <p className="text-xs text-stone-600">
             <span className="text-stone-500">Designed &amp; Developed by </span>
             <span className="text-amber-500">Freelance.</span>
+            <span className="text-stone-500">　※本サイトはポートフォリオ用のデモです</span>
           </p>
         </div>
       </div>

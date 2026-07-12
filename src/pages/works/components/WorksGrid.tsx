@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { works } from "@/mocks/works";
+import { resolvePublicUrl } from "@/utils/resolvePublicUrl";
 
 const categories = ["すべて", "ホームページ制作", "LP制作", "業務効率化システム"];
 
@@ -15,6 +16,9 @@ export default function WorksGrid() {
   return (
     <section className="bg-gray-950 py-16 min-h-screen">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
+        <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/60">
+          実案件は守秘義務のため非公開です。以下は制作品質をご覧いただくためのデモサイトです。
+        </p>
         {/* Filter tabs */}
         <div className="flex flex-wrap gap-2 mb-10">
           {categories.map((cat) => (
@@ -42,7 +46,7 @@ export default function WorksGrid() {
             >
               <div className="w-full h-52 overflow-hidden">
                 <img
-                  src={work.image}
+                  src={resolvePublicUrl(work.image)}
                   alt={work.title}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
@@ -50,6 +54,9 @@ export default function WorksGrid() {
               <div className="p-5">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-xs text-amber-400 font-semibold">{work.category}</span>
+                  {work.demo && (
+                    <span className="rounded-full bg-amber-400/15 px-2 py-0.5 text-xs font-semibold text-amber-300">デモサイト</span>
+                  )}
                   <span className="text-xs text-white/30">{work.year}</span>
                 </div>
                 <h2 className="text-white font-bold text-sm leading-snug mb-3">{work.title}</h2>
@@ -90,6 +97,9 @@ export default function WorksGrid() {
             <div className="p-6">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xs text-amber-500 font-semibold">{selected.category}</span>
+                {selected.demo && (
+                  <span className="rounded-full bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-600">デモサイト</span>
+                )}
                 <span className="text-xs text-gray-400">{selected.year}</span>
               </div>
               <h3 className="text-gray-900 font-bold text-lg mb-3">{selected.title}</h3>

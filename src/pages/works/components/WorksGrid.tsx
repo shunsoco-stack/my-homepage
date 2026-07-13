@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { works } from "@/mocks/works";
 import { resolvePublicUrl } from "@/utils/resolvePublicUrl";
 
-const categories = ["すべて", "ホームページ制作", "LP制作", "業務効率化システム"];
+const categories = ["すべて", "ホームページ制作", "LP制作", "業務効率化システム", "アプリ開発"];
 
 export default function WorksGrid() {
   const [active, setActive] = useState("すべて");
@@ -17,7 +17,7 @@ export default function WorksGrid() {
     <section className="bg-gray-950 py-16 min-h-screen">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/60">
-          実案件は守秘義務のため非公開です。以下は制作品質をご覧いただくためのデモサイトです。
+          実案件は守秘義務のため一部のみ公開しています。以下には実案件・自社開発と、制作品質をご覧いただくためのデモサイトを掲載しています。
         </p>
         {/* Filter tabs */}
         <div className="flex flex-wrap gap-2 mb-10">

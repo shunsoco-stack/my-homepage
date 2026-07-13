@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { works } from "@/mocks/works";
 import { resolvePublicUrl } from "@/utils/resolvePublicUrl";
 
-const categories = ["すべて", "ホームページ制作", "LP制作", "業務効率化システム"];
+const categories = ["すべて", "ホームページ制作", "LP制作", "業務効率化システム", "アプリ開発"];
 
 export default function Works() {
   const [active, setActive] = useState("すべて");
@@ -24,7 +24,7 @@ export default function Works() {
             </div>
             <h2 className="text-3xl md:text-4xl font-black text-white">制作実績</h2>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/60">
-              実案件は守秘義務のため非公開です。以下は制作品質をご覧いただくためのデモサイトです。
+              実案件は守秘義務のため一部のみ公開しています。以下には実案件・自社開発と、制作品質をご覧いただくためのデモサイトを掲載しています。
             </p>
           </div>
           <Link

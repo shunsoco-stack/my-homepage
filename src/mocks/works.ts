@@ -1,5 +1,27 @@
 export const works = [
   {
+    id: 7,
+    demo: false,
+    title: "BaoBao 公式アプリ",
+    category: "アプリ開発",
+    year: "運用中",
+    description: "タイリラクゼーション店舗向けの会員アプリ。会員認証、QR機能、プッシュ通知、月額サブスクリプションを実装。",
+    tags: ["React", "TypeScript", "Firebase", "Capacitor", "Stripe"],
+    image: "/works/baobao.webp",
+    url: "https://apps.apple.com/app/id6762620176",
+  },
+  {
+    id: 8,
+    demo: false,
+    title: "House Darts Tournament",
+    category: "アプリ開発",
+    year: "運用中",
+    description: "ダーツ大会の作成・参加・運営を支援するWeb／モバイルアプリ。大会管理、トーナメント表、QRエントリー、通知機能を実装。",
+    tags: ["React", "TypeScript", "Firebase", "Capacitor"],
+    image: "/works/house-darts-tournament.webp",
+    url: "https://house-darts-tournament.web.app",
+  },
+  {
     id: 1,
     demo: true,
     title: "飲食店チェーン 公式サイトリニューアル",

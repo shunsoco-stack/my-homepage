@@ -16,7 +16,7 @@ function toPreviewPath(base: string, route: string) {
   return `${normalizedBase}${route.replace(/^\/+/, "")}`;
 }
 
-const captures = works.map((work) => {
+const captures = works.filter((work) => work.demo).map((work) => {
   const routeName = work.url.match(/^\/works\/([a-z0-9-]+)$/i)?.[1];
 
   if (!routeName) {

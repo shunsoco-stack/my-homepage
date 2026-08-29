@@ -1,145 +1,51 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { works } from "@/mocks/works";
-import { resolvePublicUrl } from "@/utils/resolvePublicUrl";
 
-const categories = ["すべて", "ホームページ制作", "LP制作", "業務効率化システム", "アプリ開発"];
+import WorkCard from "@/components/feature/WorkCard";
+import WorkDetailModal from "@/components/feature/WorkDetailModal";
+import { workCategories, works, type Work } from "@/mocks/works";
 
 export default function WorksGrid() {
   const [active, setActive] = useState("すべて");
-  const [selected, setSelected] = useState<null | (typeof works)[0]>(null);
-  const navigate = useNavigate();
+  const [selected, setSelected] = useState<Work | null>(null);
 
   const filtered =
-    active === "すべて" ? works : works.filter((w) => w.category === active);
+    active === "すべて" ? works : works.filter((work) => work.category === active);
 
   return (
-    <section className="bg-gray-950 py-16 min-h-screen">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+    <section className="min-h-screen bg-gray-950 py-16">
+      <div className="mx-auto max-w-6xl px-6 md:px-10">
         <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/60">
           実案件は守秘義務のため一部のみ公開しています。以下には実案件・自社開発と、制作品質をご覧いただくためのデモサイトを掲載しています。
         </p>
-        {/* Filter tabs */}
-        <div className="flex flex-wrap gap-2 mb-10">
-          {categories.map((cat) => (
+
+        <div className="mb-10 flex flex-wrap gap-2" aria-label="制作実績カテゴリ">
+          {workCategories.map((category) => (
             <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer whitespace-nowrap ${
-                active === cat
-                  ? "bg-amber-500 text-white"
+              key={category}
+              type="button"
+              onClick={() => setActive(category)}
+              aria-pressed={active === category}
+              className={`min-h-11 whitespace-nowrap rounded-full px-5 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-300 motion-reduce:transition-none ${
+                active === category
+                  ? "bg-amber-400 text-gray-950"
                   : "border border-white/20 text-white/60 hover:border-white/40 hover:text-white/80"
               }`}
             >
-              {cat}
+              {category}
             </button>
           ))}
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((work) => (
-            <div
-              key={work.id}
-              onClick={() => setSelected(work)}
-              className="group rounded-2xl overflow-hidden bg-gray-900 cursor-pointer hover:ring-2 hover:ring-amber-500/50 transition-all"
-            >
-              <div className="w-full h-52 overflow-hidden">
-                <img
-                  src={resolvePublicUrl(work.image)}
-                  alt={work.title}
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-5">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs text-amber-400 font-semibold">{work.category}</span>
-                  {work.demo && (
-                    <span className="rounded-full bg-amber-400/15 px-2 py-0.5 text-xs font-semibold text-amber-300">デモサイト</span>
-                  )}
-                  <span className="text-xs text-white/30">{work.year}</span>
-                </div>
-                <h2 className="text-white font-bold text-sm leading-snug mb-3">{work.title}</h2>
-                <p className="text-white/40 text-xs leading-relaxed mb-4 line-clamp-2">{work.description}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {work.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs px-2.5 py-0.5 rounded-full bg-white/5 text-white/50"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <WorkCard key={work.id} work={work} onOpen={setSelected} showDescription />
           ))}
         </div>
       </div>
 
-      {/* Modal */}
-      {selected && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
-          onClick={() => setSelected(null)}
-        >
-          <div
-            className="bg-white rounded-2xl max-w-lg w-full overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="w-full h-56 overflow-hidden">
-              <img
-                src={selected.image}
-                alt={selected.title}
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div className="p-6">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs text-amber-500 font-semibold">{selected.category}</span>
-                {selected.demo && (
-                  <span className="rounded-full bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-600">デモサイト</span>
-                )}
-                <span className="text-xs text-gray-400">{selected.year}</span>
-              </div>
-              <h3 className="text-gray-900 font-bold text-lg mb-3">{selected.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-4">{selected.description}</p>
-              <div className="flex flex-wrap gap-2 mb-2">
-                {selected.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              {selected.url && (
-                <button
-                  onClick={() => {
-                    setSelected(null);
-                    if (selected.url.startsWith("http")) {
-                      window.open(selected.url, "_blank", "noopener,noreferrer");
-                    } else {
-                      navigate(selected.url);
-                    }
-                  }}
-                  className="mt-4 flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-amber-500 text-white text-sm font-semibold hover:bg-amber-600 transition-colors cursor-pointer whitespace-nowrap"
-                >
-                  <i className="ri-external-link-line"></i>
-                  サイトを見る
-                </button>
-              )}
-              <button
-                onClick={() => setSelected(null)}
-                className="mt-3 w-full py-2.5 rounded-full border border-gray-200 text-gray-500 text-sm font-medium hover:bg-gray-50 transition-colors cursor-pointer whitespace-nowrap"
-              >
-                閉じる
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {selected ? (
+        <WorkDetailModal key={selected.id} work={selected} onClose={() => setSelected(null)} />
+      ) : null}
     </section>
   );
 }

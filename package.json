@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "capture:works": "npm run build && tsx scripts/capture-works.ts",
+    "verify:procurement-work": "tsx scripts/verify-procurement-work.ts",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "type-check": "tsc --noEmit --project tsconfig.app.json"
   },

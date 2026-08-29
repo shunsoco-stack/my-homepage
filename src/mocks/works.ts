@@ -1,4 +1,89 @@
-export const works = [
+export interface WorkGalleryImage {
+  src: string;
+  alt: string;
+  label: string;
+}
+
+export interface WorkItem {
+  id: number;
+  demo: boolean;
+  title: string;
+  category: string;
+  subcategory?: string;
+  label?: string;
+  year: string;
+  description: string;
+  tags: string[];
+  image: string;
+  url: string;
+  appUrl?: string;
+  githubUrl?: string;
+  ctaLabel?: string;
+  badges?: string[];
+  note?: string;
+  gallery?: WorkGalleryImage[];
+}
+
+export const workCategories = [
+  "すべて",
+  "AIエージェント",
+  "ホームページ制作",
+  "LP制作",
+  "業務効率化システム",
+  "アプリ開発",
+] as const;
+
+export const works: WorkItem[] = [
+  {
+    id: 10,
+    demo: false,
+    title: "AI調達・仕入先選定エージェント",
+    category: "AIエージェント",
+    subcategory: "調達・購買エージェント",
+    year: "2026",
+    description:
+      "調達要件から、Evidence付きSupplier調査、不足情報の再調査、通常コードによる重み付き評価、交渉Draft、Human Reviewまでを一つのWorkspaceで支援するConcept Project。",
+    tags: ["Next.js 16", "TypeScript", "Zod", "Vitest", "Vercel"],
+    badges: [
+      "Concept Project",
+      "Verified snapshot",
+      "External AI OFF",
+      "Human approval required",
+    ],
+    note:
+      "2026-08-26取得の公式公開情報を固定snapshotとして使用しています。Live検索・注文・決済・契約・発注メール送信は行いません。",
+    image: "/works/ai-procurement-supplier-agent.webp",
+    gallery: [
+      {
+        src: "/works/ai-procurement-supplier-agent/01-procurement-goal.png",
+        label: "Procurement Goal",
+        alt: "AI調達・仕入先選定エージェントの調達条件入力と評価Weight設定画面",
+      },
+      {
+        src: "/works/ai-procurement-supplier-agent/02-agent-plan.png",
+        label: "Agent Plan",
+        alt: "AI調達・仕入先選定エージェントの8段階の調達計画とActivity Log画面",
+      },
+      {
+        src: "/works/ai-procurement-supplier-agent/03-supplier-candidates.png",
+        label: "Supplier Candidates",
+        alt: "AI調達・仕入先選定エージェントのEvidence付きSupplier候補一覧画面",
+      },
+      {
+        src: "/works/ai-procurement-supplier-agent/04-comparison-missing-data.png",
+        label: "Comparison + Missing Data",
+        alt: "AI調達・仕入先選定エージェントのSupplier比較表、不足情報Task、再調査結果画面",
+      },
+      {
+        src: "/works/ai-procurement-supplier-agent/05-recommendation-negotiation.png",
+        label: "Recommendation / Negotiation",
+        alt: "AI調達・仕入先選定エージェントの重み付き評価、Risk、交渉案、Human Review画面",
+      },
+    ],
+    url: "https://ai-procurement-supplier-agent.vercel.app",
+    githubUrl: "https://github.com/shunsoco-stack/ai-procurement-supplier-agent",
+    ctaLabel: "Live Demo",
+  },
   {
     id: 7,
     demo: false,
@@ -88,3 +173,5 @@ export const works = [
     url: "/works/startup",
   },
 ];
+
+export type Work = WorkItem;

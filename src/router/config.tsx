@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { RouteObject } from "react-router-dom";
 import HomePage from "@/pages/home/page";
 import WorksPage from "@/pages/works/page";
@@ -8,6 +9,10 @@ import EcPage from "@/pages/works/ec/page";
 import LawFirmPage from "@/pages/works/lawfirm/page";
 import StartupPage from "@/pages/works/startup/page";
 import NotFound from "@/pages/NotFound";
+
+const AiMeetingFollowUpAgentPage = lazy(
+  () => import("@/pages/works/ai-meeting-follow-up-agent/page"),
+);
 
 const routes: RouteObject[] = [
   {
@@ -41,6 +46,20 @@ const routes: RouteObject[] = [
   {
     path: "/works/startup",
     element: <StartupPage />,
+  },
+  {
+    path: "/works/ai-meeting-follow-up-agent",
+    element: (
+      <Suspense
+        fallback={
+          <div className="flex min-h-screen items-center justify-center bg-slate-950 text-sm font-semibold text-white/70" role="status">
+            作品詳細を読み込んでいます…
+          </div>
+        }
+      >
+        <AiMeetingFollowUpAgentPage />
+      </Suspense>
+    ),
   },
   {
     path: "*",

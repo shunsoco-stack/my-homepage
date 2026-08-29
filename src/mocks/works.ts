@@ -33,6 +33,59 @@ export const workCategories = [
   "アプリ開発",
 ] as const;
 
+export const aiMeetingFollowUpWork: WorkItem = {
+  id: 9,
+  demo: true,
+  title: "AI会議フォローアップエージェント",
+  category: "AIエージェント",
+  subcategory: "会議・タスクフォローエージェント",
+  label: "Concept Project / 自主制作",
+  year: "2026",
+  description:
+    "会議後のDecisionとActionを根拠付きで分離し、Owner・期限の不足、進捗、遅延、Blocked影響、Reminder、次回Agendaまでを人の確認を挟みながら継続管理するAIエージェント。",
+  tags: ["Next.js 16", "React 19", "TypeScript", "Vitest", "Vercel"],
+  badges: [
+    "Decision / Action Separation",
+    "Evidence-grounded",
+    "Auto-send OFF",
+    "Human Review required",
+  ],
+  note:
+    "固定Demo Dataを使うConcept Projectです。AIがTask完了・担当変更・期限変更・Reminder送信を自動実行することはありません。",
+  image: "/works/ai-meeting-follow-up-agent.webp",
+  gallery: [
+    {
+      src: "/works/ai-meeting-follow-up-agent/01-meeting-input.png",
+      label: "Meeting Input",
+      alt: "会議タイトル・日時・参加者・議事録・会議メモを入力する画面",
+    },
+    {
+      src: "/works/ai-meeting-follow-up-agent/02-decisions-action-items.png",
+      label: "Decisions / Action Items",
+      alt: "決定事項とAction Itemを分離し抽出根拠を確認する画面",
+    },
+    {
+      src: "/works/ai-meeting-follow-up-agent/03-missing-owner-due-date.png",
+      label: "Missing Owner / Due Date",
+      alt: "不明な担当者と期限をEvidenceを見ながら人が補完するReview Queue画面",
+    },
+    {
+      src: "/works/ai-meeting-follow-up-agent/04-follow-up-dashboard.png",
+      label: "Follow-up Dashboard",
+      alt: "未完了・期限超過・Blocked・要確認を会議横断で追跡するDashboard画面",
+    },
+    {
+      src: "/works/ai-meeting-follow-up-agent/05-reminder-next-agenda.png",
+      label: "Reminder / Next Agenda",
+      alt: "自動送信しないReminderと次回Agenda Draftを確認する画面",
+    },
+  ],
+  url: "/works/ai-meeting-follow-up-agent",
+  appUrl: "https://ai-meeting-follow-up-agent.vercel.app",
+  githubUrl: "https://github.com/shunsoco-stack/ai-meeting-follow-up-agent",
+  ctaLabel: "作品詳細を見る",
+};
+
 export const works: WorkItem[] = [
   {
     id: 10,
@@ -106,6 +159,7 @@ export const works: WorkItem[] = [
     image: "/works/house-darts-tournament.webp",
     url: "https://house-darts-tournament.web.app",
   },
+  aiMeetingFollowUpWork,
   {
     id: 1,
     demo: true,
